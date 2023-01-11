@@ -28,12 +28,13 @@ def init():
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
+    print(model_inputs)
     global model
     # download the file
     wget.download(model_inputs["audio"], "input.mp3")
     model_inputs["audio"] = "input.mp3"
     # Run the model
-    result = predict("input.mp3", **model_inputs)
+    result = predict(**model_inputs)
     os.remove("input.mp3")
     # Return the results as a dictionary
     return result

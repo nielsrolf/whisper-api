@@ -15,9 +15,8 @@ RUN pip3 install -r requirements.txt
 ADD server.py .
 
 # Add your model weight files 
-# (in this case we have a python script)
-ADD download.py .
-RUN python3 download.py
+RUN apt-get install -y wget
+RUN wget https://openaipublic.azureedge.net/main/whisper/models/e4b87e7e0bf463eb8e6956e646f1e277e901512310def2c24bf0e11bd3c28e9a/large-v1.pt  -P ./weights
 
 
 # Add your custom app code, init() and inference()
